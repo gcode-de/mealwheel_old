@@ -1,12 +1,3 @@
-"MealWheel"-App
-
-Description: Simplify food and grocery planning for the week
-
-The platform not only simplifies the meal planning and grocery shopping process but also ensures a personalized and diverse culinary experience. This approach addresses the need for easy access to a wide range of recipes and efficient management of shopping lists, making weekly food preparation a hassle-free and enjoyable task.
-ChatGPT
-markdown
-Copy code
-
 # MealWheel-App
 
 ## Description

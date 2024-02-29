@@ -1,4 +1,4 @@
-# MealWheel-App
+# MealWheel-App 🥗
 
 ## Description
 

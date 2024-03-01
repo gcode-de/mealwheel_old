@@ -44,14 +44,14 @@ export default function DetailPage() {
           <Svg />
         </Link>
       </StyledBox>
-      {/* <Image
+      <Image
         src={imageLink}
         fill
         sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
         alt={`recipe Image ${title}`}
-      /> */}
+      />
       <StyledArticle>
         <h1>{title}</h1>
         <p>

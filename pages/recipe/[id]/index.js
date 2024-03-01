@@ -152,7 +152,7 @@ const StyledHyper = styled.div`
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: var(--color-darkgrey);
+  color: var(--color-font);
   font-size: large;
   font-weight: bold;
 

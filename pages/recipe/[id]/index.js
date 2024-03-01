@@ -97,6 +97,8 @@ const Wrapper = styled.div`
 `;
 const StyledList = styled.ul`
   list-style: none;
+  margin: 0;
+  padding: 0;
 `;
 const StyledBox = styled.div`
   background-color: white;

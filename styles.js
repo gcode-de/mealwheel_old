@@ -23,7 +23,6 @@ export default createGlobalStyle`
     margin: auto;
     font-family: "archivo", sans-serif;
     /* font-weight: semi-bold; */
-    padding: 20px;
     max-width: 400px;
     background-color: var(--color-background);
   }

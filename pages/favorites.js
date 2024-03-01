@@ -9,7 +9,7 @@ export default function Favorites({ userId }) {
   const { data: user } = useSWR(`/api/users/${userId}`);
   const favoriteRecipes = user?.recipeInteractions
     .filter((recipe) => recipe.isFavorite)
-    .map((recipe) => recipe._id);
+    .map((recipe) => recipe.recipe);
 
   if (error) {
     return <div>error</div>;
@@ -25,6 +25,7 @@ export default function Favorites({ userId }) {
       </>
     );
   }
+  console.log(favoriteRecipes);
 
   return (
     <>
@@ -52,8 +53,8 @@ export default function Favorites({ userId }) {
                     <StyledDiv>
                       <StyledPTitle>{recipe.title}</StyledPTitle>
                       <StyledPDuration>
-                        {recipe.duration} MIN |{" "}
-                        {recipe.difficulty.toUpperCase()}
+                        {recipe?.duration} MIN |{" "}
+                        {recipe?.difficulty?.toUpperCase()}
                       </StyledPDuration>
                     </StyledDiv>
                   </StyledCard>

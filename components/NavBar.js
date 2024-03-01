@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { useRouter } from "next/router";
 import Pizza from "../public/icons/pizza-svgrepo-com.svg";
 import Calendar from "../public/icons/calendar-1-svgrepo-com.svg";
@@ -15,21 +15,19 @@ export default function NavBar() {
     { href: "/", label: "Discover", Icon: Pizza },
     { href: "/plan", label: "Plan", Icon: Calendar },
     { href: "/favorites", label: "Favorites", Icon: Heart },
-    { href: "/shoppinglist", label: "Shopping", Icon: List },
+    { href: "/shopping-list", label: "Shopping", Icon: List },
     { href: "/settings", label: "Settings", Icon: Gear },
   ];
 
   return (
     <StyledNav>
       {menuItems.map(({ href, label, Icon }) => (
-        // <Link href={href} key={href} passHref>
         <StyledNavElement href={href} key={href} $active={isActive(href)}>
           <StyledIconContainer>
             <Icon width="100%" height="100%" />
           </StyledIconContainer>
           <span>{label}</span>
         </StyledNavElement>
-        // </Link>
       ))}
     </StyledNav>
   );
@@ -40,9 +38,9 @@ const StyledNav = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20px 10px;
-  background-color: #f5f5f5;
-  border-top: 2px solid #4d4a4a;
+  padding: 10px 10px;
+  background-color: var(--color-background);
+  border-top: 1.5px solid var(--color-darkgrey);
   z-index: 3;
   display: flex;
   justify-content: space-between;
@@ -50,16 +48,20 @@ const StyledNav = styled.div`
 `;
 
 const StyledNavElement = styled(Link)`
-  color: ${({ $active }) => ($active ? "#DF3F3F" : "#928F8F")};
-  fill: ${({ $active }) => ($active ? "#DF3F3F" : "#928F8F")};
+  color: ${({ $active }) =>
+    $active ? "var(--color-highlight)" : "var(--color-lightgrey)"};
+  fill: ${({ $active }) =>
+    $active ? "var(--color-highlight)" : "var(--color-lightgrey)"};
   text-decoration: none;
   font-size: 0.8rem;
-  font-weight: medium;
-  cursor: pointer;
+  font-weight: 500;
 
   &:hover {
     color: black;
     fill: black;
+    div {
+      transform: scale(1.2);
+    }
   }
 
   display: flex;
@@ -69,7 +71,9 @@ const StyledNavElement = styled(Link)`
 `;
 
 const StyledIconContainer = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   margin-bottom: 5px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
 `;

@@ -7,24 +7,18 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useState } from "react";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
 export default function DetailPage() {
   const [content, setContent] = useState("instructions");
   const router = useRouter();
   const { id } = router.query;
 
-  const {
-    data: recipe,
-    isLoading,
-    error,
-  } = useSWR(`/api/recipes/${id}`, fetcher);
+  const { data: recipe, isLoading, error } = useSWR(`/api/recipes/${id}`);
 
   if (error) {
     return <h1>error</h1>;
   }
   if (!recipe) {
-    return <h1>not found</h1>;
+    return <h1>loading recipe...</h1>;
   }
 
   const {
@@ -61,10 +55,10 @@ export default function DetailPage() {
         <StyledList>
           {ingredients.map((ingredient) => (
             <StyledListItem key={_id}>
+              <StyledP>{ingredient.name}</StyledP>
               <StyledP>
                 {ingredient.quantity} {ingredient.unit}
               </StyledP>
-              <StyledP>{ingredient.name}</StyledP>
             </StyledListItem>
           ))}
         </StyledList>

@@ -25,5 +25,6 @@ export default createGlobalStyle`
     /* font-weight: semi-bold; */
     max-width: 400px;
     background-color: var(--color-background);
+    padding-bottom: 5rem;
   }
 `;

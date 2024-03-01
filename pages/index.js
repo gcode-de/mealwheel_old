@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { Fragment } from "react";
 import styled from "styled-components";
 import useSWR from "swr";
 
@@ -18,30 +20,36 @@ export default function HomePage() {
 
   return (
     <>
-      <header>
-        <h1>Meal Wheel 🥗</h1>
-      </header>
+      <StyledHeader>
+        <StyledH1>Meal Wheel 🥗</StyledH1>
+        {/* <StyledHeaderDiv>
+          <StyledButton>add recipe</StyledButton>
+          <StyledButton>filter</StyledButton>
+        </StyledHeaderDiv> */}
+      </StyledHeader>
       <StyledArticle>
         <StyledUl>
           {data.map((recipe) => {
             return (
-              <>
-                <StyledCard key={recipe._id}>
-                  <StyledImage
-                    src={recipe.imageLink}
-                    alt={recipe.title}
-                    height={123}
-                    width={123}
-                  />
-                  <StyledDiv>
-                    <p>
-                      {recipe.title}
-                      <br />
-                      {recipe.duration} MIN | {recipe.difficulty}
-                    </p>
-                  </StyledDiv>
-                </StyledCard>
-              </>
+              <Fragment key={recipe._id}>
+                <StyledLink href={`/recipe/${recipe._id}`}>
+                  <StyledCard>
+                    <StyledImage
+                      src={recipe.imageLink}
+                      alt={recipe.title}
+                      height={123}
+                      width={123}
+                    />
+                    <StyledDiv>
+                      <StyledPTitle>{recipe.title}</StyledPTitle>
+                      <StyledPDuration>
+                        {recipe.duration} MIN |{" "}
+                        {recipe.difficulty.toUpperCase()}
+                      </StyledPDuration>
+                    </StyledDiv>
+                  </StyledCard>
+                </StyledLink>
+              </Fragment>
             );
           })}
         </StyledUl>
@@ -50,12 +58,44 @@ export default function HomePage() {
   );
 }
 
+const StyledHeader = styled.header`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.5rem;
+`;
+
+const StyledH1 = styled.h1`
+  align-self: left;
+  font-size: 40px;
+  padding-bottom: 0;
+  border-bottom: 1px var(--color-darkgrey) solid;
+  color: var(--color-darkgrey);
+  width: 330px;
+  margin: 0;
+`;
+
+// const StyledHeaderDiv = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   width: 20.75rem;
+// `;
+
+// const StyledButton = styled.button`
+//   border: none;
+//   background-color: transparent;
+//   color: var(--color-shadow);
+//   font-weight: bold;
+//   font-size: 14px;
+// `;
+
 const StyledArticle = styled.article``;
 
 const StyledUl = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0;
 `;
 
 const StyledImage = styled(Image)`
@@ -63,22 +103,43 @@ const StyledImage = styled(Image)`
 `;
 
 const StyledCard = styled.li`
-  background-color: --color-component;
+  background-color: var(--color-component);
   list-style-type: none;
-  margin: 1rem;
+  margin: 1.25rem 0 0 0;
   display: flex;
   flex-direction: row;
   border-radius: 20px;
   z-index: 2;
+  /* border: black solid 1px; */
+  box-shadow: 0px 4px 8px 0px rgb(0 0 0 / 25%);
 `;
 
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 11.75rem;
+  align-items: left;
+  width: 210px;
   height: 7.5;
+`;
+
+const StyledPTitle = styled.p`
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 0;
+  margin-left: 1.5rem;
+  margin-top: 0;
+`;
+const StyledPDuration = styled.p`
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 0;
+  margin-left: 1.5rem;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: var(--darkgrey);
 `;
 
 // --color-background: #F5F5F5;

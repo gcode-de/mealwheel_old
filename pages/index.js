@@ -4,9 +4,8 @@ import { Fragment } from "react";
 import styled from "styled-components";
 import useSWR from "swr";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function HomePage() {
-  const { data, error, isLoading } = useSWR(`/api/recipes`, fetcher);
+  const { data, error, isLoading } = useSWR(`/api/recipes`);
 
   console.log(data);
 

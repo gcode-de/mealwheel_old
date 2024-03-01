@@ -6,7 +6,10 @@ export default createGlobalStyle`
   *::after {
     box-sizing: border-box;
   }
-
+  :root {
+    --color-background: #FFFFFF; 
+    --color-shadow: #000000; 
+  }
   body {
     margin: 0;
     font-family: system-ui;

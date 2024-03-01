@@ -17,7 +17,8 @@ export default createGlobalStyle`
     --color-highlight: #DF3F3F;
     --color-component: #FFFFFF;
     --color-darkgrey: #4D4A4A; 
-    --color-lightgrey: #928F8F; 
+    --color-lightgrey: #928F8F;
+    --color-font: #1E1E1E;
   }
   body {
     margin: auto;
@@ -25,5 +26,6 @@ export default createGlobalStyle`
     /* font-weight: semi-bold; */
     max-width: 400px;
     background-color: var(--color-background);
+    color: var(--color-font);
   }
 `;

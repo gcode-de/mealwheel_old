@@ -75,19 +75,19 @@ const StyledH1 = styled.h1`
   margin: 0;
 `;
 
-const StyledHeaderDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 20.75rem;
-`;
+// const StyledHeaderDiv = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   width: 20.75rem;
+// `;
 
-const StyledButton = styled.button`
-  border: none;
-  background-color: transparent;
-  color: var(--color-shadow);
-  font-weight: bold;
-  font-size: 14px;
-`;
+// const StyledButton = styled.button`
+//   border: none;
+//   background-color: transparent;
+//   color: var(--color-shadow);
+//   font-weight: bold;
+//   font-size: 14px;
+// `;
 
 const StyledArticle = styled.article``;
 

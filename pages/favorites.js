@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 import styled from "styled-components";
 import useSWR from "swr";
+import CardSkeleton from "@/components/Styled/CardSkeleton";
 
 export default function Favorites({ userId }) {
   const { data, error, isLoading } = useSWR(`/api/recipes`);
@@ -18,18 +19,27 @@ export default function Favorites({ userId }) {
   if (isLoading) {
     return (
       <>
+        User:
         <StyledHeader>
           <StyledH1>Bookmarked 🥗</StyledH1>
         </StyledHeader>
-        Loading Recipes...
+        <StyledArticle>
+          <StyledUl>
+            Loading Recipes...
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </StyledUl>
+        </StyledArticle>
       </>
     );
   }
-  console.log(favoriteRecipes);
 
   return (
     <>
-      User: {user?.userName}
+      👤 {user?.userName}
       <StyledHeader>
         <StyledH1>Bookmarked 🥗</StyledH1>
         {/* <StyledHeaderDiv>

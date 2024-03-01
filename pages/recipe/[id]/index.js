@@ -46,10 +46,8 @@ export default function DetailPage() {
       </StyledBox>
       <Image
         src={imageLink}
-        fill
-        sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
+        width={400}
+        height={300}
         alt={`recipe Image ${title}`}
       />
       <StyledArticle>

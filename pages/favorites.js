@@ -1,7 +1,7 @@
 export default function HomePage() {
   return (
     <div>
-      <h1>Plan your week! 🥗</h1>
+      <h1>Your favorites! 🥗</h1>
     </div>
   );
 }

@@ -30,7 +30,7 @@ export default function Plan({ userId }) {
   const router = useRouter();
   const weekOffset = Number(router.query.week) || 0;
   const [weekdays, setWeekdays] = useState();
-  const [numberOfRandomRecipes, setNumberOfRandomRecipes] = useState(7);
+  const [numberOfRandomRecipes, setNumberOfRandomRecipes] = useState(2);
 
   useEffect(() => {
     setWeekdays(generateWeekdays(weekOffset));
@@ -58,6 +58,10 @@ export default function Plan({ userId }) {
         return arrayMove(items, oldIndex, newIndex);
       });
     }
+  };
+
+  const handleSliderChange = (event) => {
+    setNumberOfRandomRecipes(parseInt(event.target.value, 10));
   };
 
   if (error) {
@@ -102,7 +106,19 @@ export default function Plan({ userId }) {
         >
           create plan
         </button>
-        <div>
+        {weekdays.length > 0 && (
+          <div>
+            <input
+              type="range"
+              min="0"
+              max={weekdays.length}
+              value={numberOfRandomRecipes}
+              onChange={handleSliderChange}
+            />
+            <p>Random Recipes: {numberOfRandomRecipes}</p>
+          </div>
+        )}
+        {/* <div>
           <button
             onClick={() => {
               numberOfRandomRecipes > 0 &&
@@ -120,7 +136,7 @@ export default function Plan({ userId }) {
           >
             +
           </button>
-        </div>
+        </div> */}
       </StyledHeader>
       <DndContext
         sensors={sensors}

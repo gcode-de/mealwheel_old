@@ -85,9 +85,11 @@ export default function Plan({ userId }) {
     <>
       <StyledHeader>
         <StyledH1>Weekly Plan 🥗</StyledH1>
-        <Link href={`/plan?week=${weekOffset - 1}`}>⬅︎</Link>
-        <Link href={`/plan?week=0`}>today</Link>
-        <Link href={`/plan?week=${weekOffset + 1}`}>➡︎</Link>
+        <div>
+          <Link href={`/plan?week=${weekOffset - 1}`}>⬅︎</Link>
+          <Link href={`/plan?week=0`}>today</Link>
+          <Link href={`/plan?week=${weekOffset + 1}`}>➡︎</Link>
+        </div>
         <button
           onClick={() => {
             assignRecipesToWeekdays(
@@ -100,23 +102,25 @@ export default function Plan({ userId }) {
         >
           create plan
         </button>
-        <button
-          onClick={() => {
-            numberOfRandomRecipes > 0 &&
-              setNumberOfRandomRecipes((prevN) => prevN - 1);
-          }}
-        >
-          -
-        </button>
-        Random Recipes: {numberOfRandomRecipes}
-        <button
-          onClick={() => {
-            numberOfRandomRecipes < weekdays.length &&
-              setNumberOfRandomRecipes((prevN) => prevN + 1);
-          }}
-        >
-          +
-        </button>
+        <div>
+          <button
+            onClick={() => {
+              numberOfRandomRecipes > 0 &&
+                setNumberOfRandomRecipes((prevN) => prevN - 1);
+            }}
+          >
+            -
+          </button>
+          Random Recipes: {numberOfRandomRecipes}
+          <button
+            onClick={() => {
+              numberOfRandomRecipes < weekdays.length &&
+                setNumberOfRandomRecipes((prevN) => prevN + 1);
+            }}
+          >
+            +
+          </button>
+        </div>
       </StyledHeader>
       <DndContext
         sensors={sensors}

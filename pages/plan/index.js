@@ -153,7 +153,7 @@ export default function Plan({ userId }) {
                 </StyledCard>
               </StyledLink>
             ) : (
-              <CardSkeleton />
+              <CardSkeleton text={"click create plan"} />
             )}
           </SortableItem>
         ))}

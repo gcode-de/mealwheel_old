@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
-export default function CardSkeleton({ amount = 1, $isLoading }) {
+export default function CardSkeleton({ amount = 1, $isLoading, text }) {
   return (
     <>
       {Array.from({ length: amount }, (_, index) => (
-        <StyledCardSkeleton key={index} $isLoading={$isLoading} />
+        <StyledCardSkeleton key={index} $isLoading={$isLoading}>
+          {text}
+        </StyledCardSkeleton>
       ))}
     </>
   );
@@ -16,6 +18,10 @@ const StyledCardSkeleton = styled.li`
   width: 333px;
   height: 123px;
   margin: 1.25rem 0 0 0;
+  padding-top: 40px;
+  text-align: center;
+  color: black;
+  font-size: 1.5rem;
   border-radius: 20px;
   z-index: 2;
   border: 1px solid var(--color-lightgrey);

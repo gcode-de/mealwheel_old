@@ -41,7 +41,11 @@ export default function DetailPage() {
   return (
     <Wrapper>
       <StyledBox>
-        <StyledLinkSvg href="/">
+        <StyledLinkSvg
+          onClick={() => {
+            router.back();
+          }}
+        >
           <ArrowSmall width={30} height={30} />
         </StyledLinkSvg>
       </StyledBox>
@@ -173,6 +177,8 @@ const Styledh2 = styled.h2`
 const StyledP = styled.p`
   margin: 0;
 `;
-const StyledLinkSvg = styled(Link)`
+const StyledLinkSvg = styled.button`
   height: 30px;
+  border: none;
+  background: none;
 `;

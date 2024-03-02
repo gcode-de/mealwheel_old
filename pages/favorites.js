@@ -26,11 +26,7 @@ export default function Favorites({ userId }) {
         <StyledArticle>
           <StyledUl>
             Loading Recipes...
-            <CardSkeleton />
-            <CardSkeleton />
-            <CardSkeleton />
-            <CardSkeleton />
-            <CardSkeleton />
+            <CardSkeleton amount={5} $isLoading />
           </StyledUl>
         </StyledArticle>
       </>

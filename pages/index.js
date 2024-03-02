@@ -21,11 +21,7 @@ export default function HomePage() {
         <StyledArticle>
           <StyledUl>
             Loading...
-            <CardSkeleton />
-            <CardSkeleton />
-            <CardSkeleton />
-            <CardSkeleton />
-            <CardSkeleton />
+            <CardSkeleton amount={5} $isLoading />
           </StyledUl>
         </StyledArticle>
       </>

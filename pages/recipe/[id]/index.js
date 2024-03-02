@@ -181,4 +181,5 @@ const StyledLinkSvg = styled.button`
   height: 30px;
   border: none;
   background: none;
+  cursor: pointer;
 `;

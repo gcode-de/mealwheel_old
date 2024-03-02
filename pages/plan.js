@@ -180,9 +180,7 @@ function useRandomRecipes() {
 
   useEffect(() => {
     async function fetchRecipes() {
-      const response = await fetch(
-        "http://localhost:3000/api/recipes/random/10"
-      );
+      const response = await fetch("/api/recipes/random/10");
       const data = await response.json();
       // Extrahieren Sie die ersten 7 Rezepte aus der Antwort
       const weeklyRecipes = data.slice(0, 7);

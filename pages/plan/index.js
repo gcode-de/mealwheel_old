@@ -106,7 +106,7 @@ export default function Plan({ userId }) {
         >
           create plan
         </button>
-        {weekdays.length > 0 && (
+        {weekdays && (
           <div>
             <input
               type="range"
@@ -147,32 +147,33 @@ export default function Plan({ userId }) {
           items={weekdays.map((weekday) => weekday.date)}
           strategy={verticalListSortingStrategy}
         > */}
-        {weekdays.map((weekday, index) => (
-          <SortableItem key={weekday.date} id={weekday.date}>
-            <h2>{weekday.readableDate}</h2>
-            {weekday.recipe ? (
-              <StyledLink href={`/recipe/${weekday.recipe._id}`}>
-                <StyledCard>
-                  <StyledImage
-                    src={weekday.recipe.imageLink}
-                    alt={weekday.recipe.title}
-                    height={123}
-                    width={123}
-                  />
-                  <StyledDiv>
-                    <StyledPTitle>{weekday.recipe.title}</StyledPTitle>
-                    <StyledPDuration>
-                      {weekday.recipe.duration} MIN |{" "}
-                      {weekday.recipe.difficulty.toUpperCase()}
-                    </StyledPDuration>
-                  </StyledDiv>
-                </StyledCard>
-              </StyledLink>
-            ) : (
-              <CardSkeleton text={"click create plan"} />
-            )}
-          </SortableItem>
-        ))}
+        {weekdays &&
+          weekdays.map((weekday, index) => (
+            <SortableItem key={weekday.date} id={weekday.date}>
+              <h2>{weekday.readableDate}</h2>
+              {weekday.recipe ? (
+                <StyledLink href={`/recipe/${weekday.recipe._id}`}>
+                  <StyledCard>
+                    <StyledImage
+                      src={weekday.recipe.imageLink}
+                      alt={weekday.recipe.title}
+                      height={123}
+                      width={123}
+                    />
+                    <StyledDiv>
+                      <StyledPTitle>{weekday.recipe.title}</StyledPTitle>
+                      <StyledPDuration>
+                        {weekday.recipe.duration} MIN |{" "}
+                        {weekday.recipe.difficulty.toUpperCase()}
+                      </StyledPDuration>
+                    </StyledDiv>
+                  </StyledCard>
+                </StyledLink>
+              ) : (
+                <CardSkeleton text={"click create plan"} />
+              )}
+            </SortableItem>
+          ))}
         {/* </SortableContext> */}
       </DndContext>
     </>

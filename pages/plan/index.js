@@ -1,21 +1,3 @@
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  MouseSensor,
-  TouchSensor,
-  useSensor,
-  useSensors,
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/core";
-import {
-  sortableKeyboardCoordinates,
-  arrayMove,
-  useSortable,
-} from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
@@ -45,20 +27,6 @@ export default function Plan({ userId }) {
   const userRecipes = user?.recipeInteractions
     .filter((recipe) => recipe.hasCooked)
     .map((recipe) => recipe.recipe);
-
-  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
-
-  const handleDragEnd = (event) => {
-    const { active, over } = event;
-
-    if (active.id !== over.id) {
-      setRecipes((items) => {
-        const oldIndex = items.findIndex((item) => item._id === active.id);
-        const newIndex = items.findIndex((item) => item._id === over.id);
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  };
 
   const handleSliderChange = (event) => {
     setNumberOfRandomRecipes(parseInt(event.target.value, 10));
@@ -118,64 +86,34 @@ export default function Plan({ userId }) {
             <p>Random Recipes: {numberOfRandomRecipes}</p>
           </div>
         )}
-        {/* <div>
-          <button
-            onClick={() => {
-              numberOfRandomRecipes > 0 &&
-                setNumberOfRandomRecipes((prevN) => prevN - 1);
-            }}
-          >
-            -
-          </button>
-          Random Recipes: {numberOfRandomRecipes}
-          <button
-            onClick={() => {
-              numberOfRandomRecipes < weekdays.length &&
-                setNumberOfRandomRecipes((prevN) => prevN + 1);
-            }}
-          >
-            +
-          </button>
-        </div> */}
       </StyledHeader>
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
-        {/* <SortableContext
-          items={weekdays.map((weekday) => weekday.date)}
-          strategy={verticalListSortingStrategy}
-        > */}
-        {weekdays &&
-          weekdays.map((weekday, index) => (
-            <SortableItem key={weekday.date} id={weekday.date}>
-              <h2>{weekday.readableDate}</h2>
-              {weekday.recipe ? (
-                <StyledLink href={`/recipe/${weekday.recipe._id}`}>
-                  <StyledCard>
-                    <StyledImage
-                      src={weekday.recipe.imageLink}
-                      alt={weekday.recipe.title}
-                      height={123}
-                      width={123}
-                    />
-                    <StyledDiv>
-                      <StyledPTitle>{weekday.recipe.title}</StyledPTitle>
-                      <StyledPDuration>
-                        {weekday.recipe.duration} MIN |{" "}
-                        {weekday.recipe.difficulty.toUpperCase()}
-                      </StyledPDuration>
-                    </StyledDiv>
-                  </StyledCard>
-                </StyledLink>
-              ) : (
-                <CardSkeleton text={"click create plan"} />
-              )}
-            </SortableItem>
-          ))}
-        {/* </SortableContext> */}
-      </DndContext>
+      {weekdays &&
+        weekdays.map((weekday, index) => (
+          <SortableItem key={weekday.date} id={weekday.date}>
+            <h2>{weekday.readableDate}</h2>
+            {weekday.recipe ? (
+              <StyledLink href={`/recipe/${weekday.recipe._id}`}>
+                <StyledCard>
+                  <StyledImage
+                    src={weekday.recipe.imageLink}
+                    alt={weekday.recipe.title}
+                    height={123}
+                    width={123}
+                  />
+                  <StyledDiv>
+                    <StyledPTitle>{weekday.recipe.title}</StyledPTitle>
+                    <StyledPDuration>
+                      {weekday.recipe.duration} MIN |{" "}
+                      {weekday.recipe.difficulty.toUpperCase()}
+                    </StyledPDuration>
+                  </StyledDiv>
+                </StyledCard>
+              </StyledLink>
+            ) : (
+              <CardSkeleton text={"click create plan"} />
+            )}
+          </SortableItem>
+        ))}
     </>
   );
 }

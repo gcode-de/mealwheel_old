@@ -3,18 +3,29 @@ import Link from "next/link";
 import { Fragment } from "react";
 import styled from "styled-components";
 import useSWR from "swr";
+import CardSkeleton from "@/components/Styled/CardSkeleton";
 
 export default function HomePage() {
   const { data, error, isLoading } = useSWR(`/api/recipes`);
-
-  console.log(data);
 
   if (error) {
     return <div>error</div>;
   }
 
   if (isLoading) {
-    return <div>is loading</div>;
+    return (
+      <>
+        <StyledHeader>
+          <StyledH1>Meal Wheel 🥗</StyledH1>
+        </StyledHeader>
+        <StyledArticle>
+          <StyledUl>
+            Loading...
+            <CardSkeleton amount={5} $isLoading />
+          </StyledUl>
+        </StyledArticle>
+      </>
+    );
   }
 
   return (
@@ -140,10 +151,3 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: var(--darkgrey);
 `;
-
-// --color-background: #F5F5F5;
-//     --color-shadow: #000000;
-//     --color-highlight: #DF3F3F;
-//     --color-component: #FFFFFF;
-//     --color-darkgrey: #4D4A4A;
-//     --color-lightgrey: #928F8F;

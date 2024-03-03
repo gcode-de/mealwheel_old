@@ -56,11 +56,13 @@ const StyledNavElement = styled(Link)`
   font-size: 0.8rem;
   font-weight: 500;
 
-  &:hover {
-    color: black;
-    fill: black;
-    div {
-      transform: scale(1.2);
+  @media only screen and (min-width: 900px) {
+    &:hover {
+      color: black;
+      fill: black;
+      div {
+        transform: scale(1.2);
+      }
     }
   }
 

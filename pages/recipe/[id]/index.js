@@ -17,6 +17,9 @@ export default function DetailPage() {
   if (error) {
     return <h1>error</h1>;
   }
+  if (isLoading) {
+    return <h1>loading...</h1>;
+  }
   if (!recipe) {
     return <h1>loading recipe...</h1>;
   }
@@ -32,13 +35,19 @@ export default function DetailPage() {
     duration,
     difficulty,
   } = recipe;
+
   difficulty.toUpperCase();
+
   return (
     <Wrapper>
       <StyledBox>
-        <Link href="/">
+        <StyledLinkSvg
+          onClick={() => {
+            router.back();
+          }}
+        >
           <ArrowSmall width={30} height={30} />
-        </Link>
+        </StyledLinkSvg>
       </StyledBox>
       <StyledImage
         src={imageLink}
@@ -89,6 +98,7 @@ const StyledArticle = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   border-radius: 40px 40px 0 0;
   padding-left: 3rem;
   padding-right: 3rem;
@@ -114,6 +124,7 @@ const StyledIngredients = styled.article`
   border: 1px solid var(--color-lightgrey);
   border-radius: 20px;
   padding: 1rem;
+  margin-top: 1rem;
 `;
 const StyledBox = styled.div`
   background-color: white;
@@ -139,7 +150,7 @@ const StyledHyper = styled.div`
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: var(--color-darkgrey);
+  color: var(--color-font);
   font-size: large;
   font-weight: bold;
 
@@ -150,6 +161,7 @@ const StyledLink = styled(Link)`
 const StyledImage = styled(Image)`
   position: relative;
   top: 0;
+  width: 100%;
 `;
 const StyledListItem = styled.li`
   display: flex;
@@ -164,4 +176,10 @@ const Styledh2 = styled.h2`
 `;
 const StyledP = styled.p`
   margin: 0;
+`;
+const StyledLinkSvg = styled.button`
+  height: 30px;
+  border: none;
+  background: none;
+  cursor: pointer;
 `;

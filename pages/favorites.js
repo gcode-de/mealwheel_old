@@ -3,13 +3,14 @@ import Link from "next/link";
 import { Fragment } from "react";
 import styled from "styled-components";
 import useSWR from "swr";
+import CardSkeleton from "@/components/Styled/CardSkeleton";
 
 export default function Favorites({ userId }) {
   const { data, error, isLoading } = useSWR(`/api/recipes`);
   const { data: user } = useSWR(`/api/users/${userId}`);
   const favoriteRecipes = user?.recipeInteractions
     .filter((recipe) => recipe.isFavorite)
-    .map((recipe) => recipe._id);
+    .map((recipe) => recipe.recipe);
 
   if (error) {
     return <div>error</div>;
@@ -18,17 +19,23 @@ export default function Favorites({ userId }) {
   if (isLoading) {
     return (
       <>
+        User:
         <StyledHeader>
           <StyledH1>Bookmarked 🥗</StyledH1>
         </StyledHeader>
-        Loading Recipes...
+        <StyledArticle>
+          <StyledUl>
+            Loading Recipes...
+            <CardSkeleton amount={5} $isLoading />
+          </StyledUl>
+        </StyledArticle>
       </>
     );
   }
 
   return (
     <>
-      User: {user?.userName}
+      👤 {user?.userName}
       <StyledHeader>
         <StyledH1>Bookmarked 🥗</StyledH1>
         {/* <StyledHeaderDiv>
@@ -52,8 +59,8 @@ export default function Favorites({ userId }) {
                     <StyledDiv>
                       <StyledPTitle>{recipe.title}</StyledPTitle>
                       <StyledPDuration>
-                        {recipe.duration} MIN |{" "}
-                        {recipe.difficulty.toUpperCase()}
+                        {recipe?.duration} MIN |{" "}
+                        {recipe?.difficulty?.toUpperCase()}
                       </StyledPDuration>
                     </StyledDiv>
                   </StyledCard>
